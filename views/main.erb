@@ -4,9 +4,17 @@
 	<title></title>
 </head>
 <body>
-	<form action = "/" method="POST">
-	<input type = text name = "tag" placeholder = "tag">
-	<button>submit</button>
+	<form action = "/search" method="GET">
+		<input type = text name = "tag" placeholder = "tag">
+		<button>submit</button>
 	</form>
+	<% if (insta) %>
+	<ul>
+		<% insta.each do |image| %>
+			<li><img src="<%=img_url%>"></li>
+		<% end %>
+	</ul> 
+	<% end %>
+
 </body>
 </html>
