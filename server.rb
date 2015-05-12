@@ -21,23 +21,40 @@ get '/' do
 end 
 
 get '/search' do 
+	
 	tag = params[:tag]
 	
 	keyfile = JSON.parse(File.read('secrets.json'))
 	key =keyfile["apikey"]
-	puts key
+	location = params[:location]
+	#if location box is checked
+	if location == "on"
+		address = params[:tag].gsub("/\s/", "+")
+		data = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{address}")
+		
+		lat = data["results"][0]["geometry"]["location"]["lat"]
+		lng = data["results"][0]["geometry"]["location"]["lng"]
 
-	response = HTTParty.get("https://api.instagram.com/v1/tags/#{tag}/media/recent?&count=10&client_id=#{key}")
-	
-	parsed_body = JSON.parse(response.body)
-	results = parsed_body["data"]
-	url_arr = []
-	results.each do |item|
-		url_arr << item["images"]["standard_resolution"]["url"]
-	end 
+		response = HTTParty.get("https://api.instagram.com/v1/media/search?lat=#{lat}&lng=#{lng}&count=10&client_id=#{key}")
+		parsed_body = JSON.parse(response.body)
+		results = parsed_body["data"]
+		url_arr = []
+		results.each do |item|
+			url_arr << item["images"]["standard_resolution"]["url"]
+		end
+		erb :search, locals: {results: url_arr, tag: tag}
 
-	#url = parsed_body["data"][0]["images"]["standard_resolution"]["url"]
-	erb :search, locals: {results: url_arr, tag: tag}
+	else
+		response = HTTParty.get("https://api.instagram.com/v1/tags/#{tag}/media/recent?&count=10&client_id=#{key}")
+		
+		parsed_body = JSON.parse(response.body)
+		results = parsed_body["data"]
+		url_arr = []
+		results.each do |item|
+			url_arr << item["images"]["standard_resolution"]["url"]
+		end 
+		erb :search, locals: {results: url_arr, tag: tag}
+	end
 end 
 
 post '/' do 
