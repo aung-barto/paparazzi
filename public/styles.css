@@ -5,3 +5,9 @@ img{
 li{ 
 	display: inline-block;
 }
+h1{
+	margin:auto;
+}
+body{
+	font-family: 'Press Start 2P', cursive;
+}
