@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href = "../styles.css" rel = "stylesheet" type ="text/css"/>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	<title></title>
+</head>
+<body>
+	<h1><%= tag %></h1>
+	<% if (results) %>
+	<ul> 
+		<% results.each do |pic| %> 
+			<li><img src= "<%= pic[2] %>"</li>
+		<% end %> 
+	</ul>
+	<% end %> 
+	<a href="/">Go Home</a>
+
+</body>
+</html>

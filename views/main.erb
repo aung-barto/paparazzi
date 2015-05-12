@@ -2,16 +2,21 @@
 <html>
 <head>
 	<title></title>
+	<link href = "../styles.css" rel = "stylesheet" type ="text/css"/>
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<h1>InstaTags</h1>
 	<form action = "/search" method="GET">
 		<input type = text name = "tag" placeholder = "tag">
+		<input type = checkbox name = "location">location</input>
 		<button>submit</button>
 	</form>
+	
 	<% if (insta) %>
 	<ul>
-		<% insta.each do |image| %>
-			<li><img src="<%=img_url%>"></li>
+		<% insta.each do |item| %>
+			<li><a href="/pics/<%= item[0]%>"><img src="<%=item[2]%>"></a></li>
 		<% end %>
 	</ul> 
 	<% end %>

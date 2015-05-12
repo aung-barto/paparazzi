@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href = "../styles.css" rel = "stylesheet" type ="text/css"/>
+</head>
+<body>
+	<% if (results) %>
+	<ul>
+		<form action = "/" method="POST">
+		<input type = "hidden" name = "tag" value = "<%=tag%>">
+		<% counter = 0 %>
+		<% results.each do |image| %>
+			<% counter +=1 %>
+			<li><img src="<%=image%>"></li>
+			<input type = "checkbox"  name = "<%=counter %>" value = "<%=image%>">
+<!-- 			<input type = "hidden"  value = "<%=tag%>">
+ -->		<% end %>
+		<button>save</button>
+		</form>
+	</ul> 
+	<% end %>
+
+</body>
+</html>
