@@ -1,13 +1,25 @@
-img{
+li img{
 	width: 10em;
 	height: auto
 }
 li{ 
 	display: inline-block;
+	margin:.75em;
 }
 h1{
-	margin:auto;
+	float:right;
+	margin:auto
 }
 body{
 	font-family: 'Press Start 2P', cursive;
+}
+
+div#show{
+	margin:auto;
+	text-align: center
+}
+#show img{ 
+	width: 25em; 
+	height: auto;
+	padding: 3em
 }
