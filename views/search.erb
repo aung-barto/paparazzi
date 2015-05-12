@@ -3,7 +3,7 @@
 <head>
 	<link href = "../styles.css" rel = "stylesheet" type ="text/css"/>
 </head>
-<body>
+<body style = "background-color: <%= color %>">
 	<% if (results) %>
 	<ul>
 		<form action = "/" method="POST">
@@ -13,8 +13,8 @@
 			<% counter +=1 %>
 			<li><img src="<%=image%>"></li>
 			<input type = "checkbox"  name = "<%=counter %>" value = "<%=image%>">
-<!-- 			<input type = "hidden"  value = "<%=tag%>">
- -->		<% end %>
+		
+		<% end %>
 		<button>save</button>
 		</form>
 	</ul> 

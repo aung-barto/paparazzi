@@ -14,18 +14,19 @@ create table if not exists instas (
 	); 
 SQL
 
-
 get '/' do 
 	insta_list = db.execute("SELECT * FROM instas")
 	erb :main, locals: {insta: insta_list}
 end 
 
+#search images
 get '/search' do 
-	
 	tag = params[:tag]
 	
 	keyfile = JSON.parse(File.read('secrets.json'))
-	key =keyfile["apikey"]
+	insta_key =keyfile["instaKey"]
+	weather_key = keyfile["weatherKey"]
+
 	location = params[:location]
 	#if location box is checked
 	if location == "on"
@@ -35,17 +36,23 @@ get '/search' do
 		lat = data["results"][0]["geometry"]["location"]["lat"]
 		lng = data["results"][0]["geometry"]["location"]["lng"]
 
-		response = HTTParty.get("https://api.instagram.com/v1/media/search?lat=#{lat}&lng=#{lng}&count=10&client_id=#{key}")
+		weather_data = HTTParty.get("http://api.wunderground.com/api/#{weather_key}/hourly/q/#{lat},#{lng}.json")
+		temp = weather_data["hourly_forecast"][0]["feelslike"]["english"].to_i
+		color_arr = ["#43A7EF","#549CDC","#6591C9","#7787B6","#887CA3","#9A7290","#AB677D","#BC5C6A","#CE5257","#DF4744"]
+		index = (temp/10).to_f - 1
+		background_color = color_arr[index]
+
+		response = HTTParty.get("https://api.instagram.com/v1/media/search?lat=#{lat}&lng=#{lng}&count=10&client_id=#{insta_key}")
 		parsed_body = JSON.parse(response.body)
 		results = parsed_body["data"]
 		url_arr = []
 		results.each do |item|
 			url_arr << item["images"]["standard_resolution"]["url"]
 		end
-		erb :search, locals: {results: url_arr, tag: tag}
+		erb :search, locals: {results: url_arr, tag: tag, color: background_color}
 
 	else
-		response = HTTParty.get("https://api.instagram.com/v1/tags/#{tag}/media/recent?&count=10&client_id=#{key}")
+		response = HTTParty.get("https://api.instagram.com/v1/tags/#{tag}/media/recent?&count=10&client_id=#{insta_key}")
 		
 		parsed_body = JSON.parse(response.body)
 		results = parsed_body["data"]
@@ -53,10 +60,11 @@ get '/search' do
 		results.each do |item|
 			url_arr << item["images"]["standard_resolution"]["url"]
 		end 
-		erb :search, locals: {results: url_arr, tag: tag}
+		erb :search, locals: {results: url_arr, tag: tag, color: "#ffffff"}
 	end
 end 
 
+#add image and tag name into database
 post '/' do 
 	tag = params[:tag]
 	# gets rid of the first element 
@@ -67,6 +75,7 @@ post '/' do
 	redirect("/")
 end  
 
+#show individual image
 get '/pics/:id' do 
 	id = params[:id]
 	one_pic = db.execute("SELECT * FROM instas WHERE id = ?", id)
@@ -79,11 +88,13 @@ delete '/pics/:id' do
 	redirect("/")
 end
 
+#show images by tag name
 get '/tags/:tag' do 
 	tag = params[:tag]
 	pic_list = db.execute("SELECT * FROM instas WHERE tag = ?", tag)
 	erb :tags, locals: {results: pic_list, tag: tag}
-end 
+end
+
 
 
 
