@@ -7,7 +7,9 @@ li{
 	margin:.75em;
 }
 h1{
-	float:right;
+	position: absolute;
+	padding-top: .3em;
+	right: 1.75em;
 	margin:auto
 }
 body{
@@ -22,4 +24,50 @@ div#show{
 	width: 25em; 
 	height: auto;
 	padding: 3em
+}
+.location {
+	display: inline-block;
+}
+
+#locate_text{
+	position: relative;
+	top: 4px;
+}
+
+form {
+	padding-left: 3em;
+}
+
+.delete_form {
+	width: 100px;
+	padding-left: 500px;
+	text-align: center;
+}
+
+#delete {
+	font-family: 'Press Start 2P', cursive;
+	font-size: .75em;
+	outline: none;
+	border: none;
+	background-color: white;
+}
+
+a {
+	text-decoration: none;
+}
+
+#tag {
+	top: 2em;
+	color: red;
+}
+
+.home {
+	font-size: .75em;
+	position: absolute;
+	top: 540px;
+}
+
+.tag_home {
+	padding-left: 4.3em;
+	font-size: .75em;
 }
