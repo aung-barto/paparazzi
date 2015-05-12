@@ -39,6 +39,10 @@ form {
 	padding-left: 3em;
 }
 
+.search_results {
+	position: relative;
+	top: 3.2em;
+}
 button{
 	font-family: 'Press Start 2P', cursive;
 	font-size: .75em;
@@ -67,4 +71,18 @@ a {
 	position: relative;
 	top: .3em;
 }
+#submit:hover {
+	color:#44cc8a;
+}
 
+#delete {
+	position: relative;
+	left: -30px;
+}
+#delete:hover {
+	color:#44cc8a;
+}
+
+.save:hover {
+	color:#44cc8a;
+}

@@ -8,7 +8,7 @@
 	<a href = "/"><h1>InstaTag</h1></a>
 	<% if (results) %>
 	<ul>
-		<form action = "/" method="POST">
+		<form action = "/" method="POST" class="search_results">
 		<input type = "hidden" name = "tag" value = "<%=tag%>">
 		<% counter = 0 %>
 		<% results.each do |image| %>
@@ -17,7 +17,7 @@
 			<input type = "checkbox"  name = "<%=counter %>" value = "<%=image%>">
 		
 		<% end %>
-		<button>save</button>
+		<button class="save">save</button>
 		</form>
 	</ul> 
 	<% end %>
