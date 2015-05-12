@@ -31,6 +31,7 @@ div#show{
 
 #locate_text{
 	position: relative;
+	font-size: .75em;
 	top: 4px;
 }
 
@@ -38,13 +39,7 @@ form {
 	padding-left: 3em;
 }
 
-.delete_form {
-	width: 100px;
-	padding-left: 500px;
-	text-align: center;
-}
-
-#delete {
+button{
 	font-family: 'Press Start 2P', cursive;
 	font-size: .75em;
 	outline: none;
@@ -56,18 +51,20 @@ a {
 	text-decoration: none;
 }
 
+.ul_tag {
+	position: relative;
+	top: 1.5em;
+}
+
 #tag {
-	top: 2em;
+	position: relative;
+	top: .7em;
+	left: 2.2em;
 	color: red;
 }
 
-.home {
-	font-size: .75em;
-	position: absolute;
-	top: 540px;
+#submit {
+	position: relative;
+	top: .3em;
 }
 
-.tag_home {
-	padding-left: 4.3em;
-	font-size: .75em;
-}

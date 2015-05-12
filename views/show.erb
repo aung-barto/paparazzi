@@ -6,17 +6,16 @@
 	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>InstaTags</h1>
+	<a href = "/"><h1>InstaTag</h1></a>
 	<div id = "show">
 	<img src = "<%= pic[2] %>" id="single_img"> <br>
 	see other <a href ="/tags/<%= pic[1] %>"><%= pic[1] %></a> grams
 	
-	<form action = "/pics/<%= pic[0] %>" method = "POST" class="delete_form">
+	<form action = "/pics/<%= pic[0] %>" method = "POST">
 		<input type = "hidden" name = "_method" value = "DELETE">
 		<br>
 		<button id="delete">Delete</button>
 	</form>
-	<a href="/" class="home">Go Home</a>
 	</div>
 </body>
 </html>

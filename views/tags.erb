@@ -6,16 +6,15 @@
 	<title></title>
 </head>
 <body>
-	<h1>InstaTags</h1>
-	<h1 id="tag"><%= tag %></h1>
+	<a href = "/"><h1>InstaTag</h1></a>
+	<h2 id="tag"><%= tag %></h2>
 	<% if (results) %>
-	<ul> 
+	<ul class="ul_tag"> 
 		<% results.each do |pic| %> 
 			<li><img src= "<%= pic[2] %>"</li>
 		<% end %> 
 	</ul>
 	<% end %> 
-	<a href="/" class="tag_home">Go Home</a>
 
 </body>
 </html>

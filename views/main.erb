@@ -6,11 +6,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<h1>InstaTags</h1>
-	<form action = "/search" method="GET">
+	<a href = "/"><h1>InstaTag</h1></a>
+	<form action = "/search" method="GET" id="search_form">
 		<input type = text name = "tag" placeholder = "tag">
 		<input type = checkbox name = "location" class="location"><p class="location" id="locate_text">location</p></input>
-		<button>submit</button>
+		<button id="submit">submit</button>
 	</form>
 	
 	<% if (insta) %>
